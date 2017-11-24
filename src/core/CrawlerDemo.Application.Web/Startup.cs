@@ -1,8 +1,10 @@
 ﻿using CrawlerDemo.Application.Web.Integration.Mvc;
+using CrawlerDemo.Domain;
 using ExistsForAll.Shepherd.SimpleInjector;
 using ExistsForAll.Shepherd.SimpleInjector.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -32,9 +34,7 @@ namespace CrawlerDemo.Application.Web
 
 		public void ConfigureContainer(Container container)
 		{
-			var shepherd = new Shepherd(container);
-			shepherd.AddCompleteTypeAssembly(this.GetType().Assembly);
-			shepherd.Herd();
+			container.RegisterSingleton<ICrawlerSiteRequestValidator, CrawlerSiteRequestValidator>();
 		}
 
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -49,7 +49,10 @@ namespace CrawlerDemo.Application.Web
 			}
 			else
 			{
-				app.UseExceptionHandler("/Home/Error");
+				app.UseExceptionHandler(new ExceptionHandlerOptions()
+				{
+					ExceptionHandler = async context => await context.Response.WriteAsync("Not good")
+				});
 			}
 
 			app.UseStaticFiles();

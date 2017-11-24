@@ -41,5 +41,9 @@
   <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CrawlerDemo.Frameworks\CrawlerDemo.Frameworks.csproj" />
+    <ProjectReference Include="..\CrawlerDemo.Domain\CrawlerDemo.Domain.csproj" />
+  </ItemGroup>
 
 </Project>
