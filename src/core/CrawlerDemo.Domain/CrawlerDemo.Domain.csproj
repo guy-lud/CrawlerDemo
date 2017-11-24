@@ -43,8 +43,12 @@
     <Compile Include="BadCrawlerRequestException.cs" />
     <Compile Include="CrawlerSiteRequest.cs" />
     <Compile Include="CrawlerSiteRequestValidator.cs" />
+    <Compile Include="Crawler\ICrawler.cs" />
+    <Compile Include="Crawler\ISiteCrawler.cs" />
+    <Compile Include="DomainRef.cs" />
     <Compile Include="ICrawlerSiteRequestValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site\ISiteRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CrawlerDemo.Frameworks\CrawlerDemo.Frameworks.csproj">

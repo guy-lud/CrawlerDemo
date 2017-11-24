@@ -17,20 +17,12 @@ namespace CrawlerDemo.Application.Web.Application.Crawler
 		}
 
 		[HttpGet("crawl")]
-		public Object ExtractInfoFromWebSite([NotNull] string url, IEnumerable<string> matchWords, int recursionDepth)
+		public Object ExtractInfoFromWebSite([NotNull] string url, IEnumerable<string> matchWords = default, int recursionDepth = 1)
 		{
 			var request = new CrawlerSiteRequest(url, matchWords, recursionDepth);
 			_crawlerSiteRequestValidator.ValidateCrawlingRequest(request);
 
 			return request;
 		}
-
-		[HttpGet("test")]
-		public string Test()
-		{
-			
-			return "ok";
-		}
-
 	}
 }

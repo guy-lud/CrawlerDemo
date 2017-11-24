@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CrawlerDemo.Frameworks
+﻿namespace CrawlerDemo.Frameworks
 {
 	public static class StringExtensions
 	{
@@ -12,6 +6,5 @@ namespace CrawlerDemo.Frameworks
 		{
 			return string.IsNullOrWhiteSpace(target);
 		}
-
 	}
 }

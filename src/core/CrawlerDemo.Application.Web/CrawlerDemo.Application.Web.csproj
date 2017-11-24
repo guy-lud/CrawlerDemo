@@ -10,11 +10,23 @@
     <RootNamespace>CrawlerDemo.Application.Web</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Remove="Application\Shared\**" />
     <Content Remove="Application\Shared\**" />
     <EmbeddedResource Remove="Application\Shared\**" />
     <None Remove="Application\Shared\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="CrawlerDemo.Application.Web.csproj.DotSettings" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="ExistAll.AspNet.FeatureFolderBase" Version="1.0.0" />
@@ -42,6 +54,7 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\CrawlerDemo.DataAccess\CrawlerDemo.DataAccess.csproj" />
     <ProjectReference Include="..\..\CrawlerDemo.Frameworks\CrawlerDemo.Frameworks.csproj" />
     <ProjectReference Include="..\CrawlerDemo.Domain\CrawlerDemo.Domain.csproj" />
   </ItemGroup>

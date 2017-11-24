@@ -1,5 +1,13 @@
-﻿using CrawlerDemo.Application.Web.Integration.Mvc;
+﻿using System.Reflection;
+using CrawlerDemo.Application.Web.Integration.Mvc;
+using CrawlerDemo.DataAccess;
+using CrawlerDemo.DataAccess.Crawler;
 using CrawlerDemo.Domain;
+using CrawlerDemo.Domain.Crawler;
+using CrawlerDemo.Domain.Site;
+using CrawlerDemo.Frameworks;
+using ExistAll.SimpleConfig;
+using ExistAll.SimpleConfig.Binders;
 using ExistsForAll.Shepherd.SimpleInjector;
 using ExistsForAll.Shepherd.SimpleInjector.Extensions;
 using Microsoft.AspNetCore.Builder;
@@ -12,7 +20,7 @@ using SimpleInjector;
 
 namespace CrawlerDemo.Application.Web
 {
-	public class Startup 
+	public class Startup
 	{
 		public Startup(IHostingEnvironment env)
 		{
@@ -34,6 +42,28 @@ namespace CrawlerDemo.Application.Web
 
 		public void ConfigureContainer(Container container)
 		{
+			var config = new ConfigBuilder();
+			var collection = new AssemblyCollection()
+				.AddPublicTypesAssemblies(GetType().GetTypeInfo().Assembly,
+				typeof(Ref).Assembly,
+				typeof(DomainRef).Assembly);
+
+			config.Add(new ExistAll.SimpleConfig.Binders.ConfigurationBinder(Configuration));
+
+			var settings = config.Build(collection.Assemblies, new ConfigOptions()
+			{
+				ConfigSuffix = "Settings"
+			});
+
+			foreach (var setting in settings)
+			{
+				container.RegisterSingleton(setting.Key, setting.Value);
+			}
+
+			container.RegisterSingleton<ISystemClock,SystemClock>();
+			container.RegisterSingleton<ISiteCrawler,HttpSiteCrawler>();
+			container.RegisterDecorator<ISiteCrawler, CacheHttpSiteCrawler>();
+			container.RegisterSingleton<ISiteRepository, SiteRepository>();
 			container.RegisterSingleton<ICrawlerSiteRequestValidator, CrawlerSiteRequestValidator>();
 		}
 
@@ -57,10 +87,7 @@ namespace CrawlerDemo.Application.Web
 
 			app.UseStaticFiles();
 
-			app.UseMvc(routes =>
-			{
-			
-			});
+			app.UseMvc();
 		}
 	}
 }
