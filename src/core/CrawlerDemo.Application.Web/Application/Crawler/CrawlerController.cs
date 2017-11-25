@@ -19,7 +19,7 @@ namespace CrawlerDemo.Application.Web.Application.Crawler
 		[HttpGet("crawl")]
 		public Object ExtractInfoFromWebSite([NotNull] string url, IEnumerable<string> matchWords = default, int recursionDepth = 1)
 		{
-			var request = new CrawlerSiteRequest(url, matchWords, recursionDepth);
+			var request = new SiteInfoRequest(url, matchWords, recursionDepth);
 			_crawlerSiteRequestValidator.ValidateCrawlingRequest(request);
 
 			return request;

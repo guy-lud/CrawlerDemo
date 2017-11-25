@@ -40,9 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BadCrawlerRequestException.cs" />
-    <Compile Include="CrawlerSiteRequest.cs" />
-    <Compile Include="CrawlerSiteRequestValidator.cs" />
+    <Compile Include="BadSiteInfoRequestException.cs" />
+    <Compile Include="Jobs\IJob.cs" />
+    <Compile Include="Jobs\IJobConsumer.cs" />
+    <Compile Include="Jobs\IJobExecutorSettings.cs" />
+    <Compile Include="Jobs\IJobHandler.cs" />
+    <Compile Include="Jobs\JobConsumer.cs" />
+    <Compile Include="Jobs\JobExecutor.cs" />
+    <Compile Include="SiteInfoRequest.cs" />
+    <Compile Include="SiteInfoRequestValidator.cs" />
     <Compile Include="Crawler\ICrawler.cs" />
     <Compile Include="Crawler\ISiteCrawler.cs" />
     <Compile Include="DomainRef.cs" />

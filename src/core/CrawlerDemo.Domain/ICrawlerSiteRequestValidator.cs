@@ -2,6 +2,6 @@
 {
 	public interface ICrawlerSiteRequestValidator
 	{
-		void ValidateCrawlingRequest(CrawlerSiteRequest request);
+		void ValidateCrawlingRequest(SiteInfoRequest infoRequest);
 	}
 }

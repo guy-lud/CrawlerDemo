@@ -64,7 +64,7 @@ namespace CrawlerDemo.Application.Web
 			container.RegisterSingleton<ISiteCrawler,HttpSiteCrawler>();
 			container.RegisterDecorator<ISiteCrawler, CacheHttpSiteCrawler>();
 			container.RegisterSingleton<ISiteRepository, SiteRepository>();
-			container.RegisterSingleton<ICrawlerSiteRequestValidator, CrawlerSiteRequestValidator>();
+			container.RegisterSingleton<ICrawlerSiteRequestValidator, SiteInfoRequestValidator>();
 		}
 
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
