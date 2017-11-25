@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HtmlAgilityPack, Version=1.6.5.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\HtmlAgilityPack.1.6.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -54,13 +57,20 @@
     <Compile Include="DomainRef.cs" />
     <Compile Include="ICrawlerSiteRequestValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site\ISiteParser.cs" />
     <Compile Include="Site\ISiteRepository.cs" />
+    <Compile Include="Site\ITextAggregator.cs" />
+    <Compile Include="Site\ParsingOutcome.cs" />
+    <Compile Include="Site\WordCounter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CrawlerDemo.Frameworks\CrawlerDemo.Frameworks.csproj">
       <Project>{14afac75-8c05-4c34-b196-36ddadb9e5fa}</Project>
       <Name>CrawlerDemo.Frameworks</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
